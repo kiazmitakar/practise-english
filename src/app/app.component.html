@@ -1,8 +1,28 @@
-<div>
-  {{selectedItem.eng}}
-</div>
-<div>
-  {{selectedItem.hun}}
-</div>
+<mat-sidenav-container class="example-container">
+  <mat-sidenav class="side-nav" #sidenav>
+    <app-category-selector (selectedCategories)="dataProvider.selectCategories($event)"
+      [categories]="dataProvider.getCategoris()|async"></app-category-selector>
+  </mat-sidenav>
 
-<button (click)="nextItem()">Next</button>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <mat-toolbar-row>
+        <span>Babba</span>
+        <span class="example-spacer"></span>
+        <button (click)="sidenav.toggle()" mat-mini-fab color="primary">
+          <mat-icon>menu</mat-icon>
+        </button>
+      </mat-toolbar-row>
+    </mat-toolbar>
+
+    <app-cards [show]="state.getShowType()|async" [selectedItem]="dataProvider.getItem()|async"></app-cards>
+
+    <div class="buttons">
+      <button mat-button class="next-button" mat-raised-button color="primary"
+        (click)="dataProvider.next(); state.next()">Next</button>
+      <button mat-button class="next-button" (click)="state.showBoth()" mat-raised-button color="primary">Show</button>
+    </div>
+
+
+  </mat-sidenav-content>
+</mat-sidenav-container>

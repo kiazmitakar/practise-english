@@ -1,0 +1,23 @@
+<ng-container *ngIf="selectedItem">
+    <ng-container *ngIf="show==0||show==2">
+        <mat-card class="sentence-card" [class.mat-elevation-z7]="true">
+            <span>
+                {{selectedItem.eng}}
+            </span>
+        </mat-card>
+    </ng-container>
+    <ng-container *ngIf="show==1||show==2">
+        <mat-card class="sentence-card" [class.mat-elevation-z7]="true">
+            <span>
+                {{selectedItem.hun}}
+            </span>
+        </mat-card>
+    </ng-container>
+    <ng-container *ngIf="selectedItem.details">
+        <mat-card class="sentence-card" [class.mat-elevation-z7]="true">
+            <span>
+                {{selectedItem.details}}
+            </span>
+        </mat-card>
+    </ng-container>
+</ng-container>
